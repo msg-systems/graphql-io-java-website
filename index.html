@@ -103,14 +103,6 @@
                                     <p>
                                         <b>Hello World Java Server:</b>
                                         <div data-syntax="java">
-
-<dependency>
-	<groupId>com.graphqlio</groupId>
-	<artifactId>graphql-io-server-spring-boot-starter</artifactId>
-	<version>0.0.9</version>
-</dependency>
-
-
 @SpringBootApplication
 public class Application implements ApplicationRunner {
 	
@@ -128,31 +120,7 @@ public class Application implements ApplicationRunner {
 	}
 }
 
-
-schema {
-	query: Query
-	mutation: Mutation
-}
-
-type Query {
-	counter: Counter
-}
-
-type Mutation {
-	counter: Counter
-}
-
-type Counter {
-	value: Int
-	increase: Counter
-}
-
-
-
-
-
-
-                                        </div>
+                                       </div>
                                     </p>
                                 </div>
                             </div>
