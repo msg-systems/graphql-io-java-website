@@ -73,20 +73,17 @@
                                     <p>
                                         On the server-side, <b>GraphQL-IO</b> it is based on the GraphQL engine <a href="https://github.com/graphql-java/graphql-java">GraphQL.js</a>,
                                         the GraphQL schema execution library <a href="https://github.com/graphql-java-kickstart/graphql-java-tools">GraphQL-Tools</a>,
-                                        the GraphQL type definition library <a href="https://github.com/Thinkenterprise/graphql-tools-types-java">GraphQL-Tools-Types</a><sup>*</sup>,
-                                        the GraphQL subscription management library <a href="https://github.com/Thinkenterprise/graphql-tools-subscribe-java">GraphQL-Tools-Subscribe</a><sup>*</sup>,
+                                        the GraphQL type definition library <a href="https://github.com/Thinkenterprise/graphql-tools-types-java">GraphQL-Tools-Types</a>,
+                                        the GraphQL subscription management library <a href="https://github.com/Thinkenterprise/graphql-tools-subscribe-java">GraphQL-Tools-Subscribe</a>,
                                         the network communication framework <a href="https://netty.io">Netty</a>,
-                                        the WebSocket integration plugin <a href="https://github.com/Thinkenterprise/netty-plugin-websocket">Netty-Plugin-WebSocket</a><sup>*</sup>,
-                                        the underlying WebSocket frame library <a href="https://github.com/Thinkenterprise/websocket-framed-java">WebSocket-Framed</a><sup>*</sup>
+                                        the WebSocket integration plugin <a href="https://github.com/Thinkenterprise/netty-plugin-websocket">Netty-Plugin-WebSocket</a>,
+                                        the underlying WebSocket frame library <a href="https://github.com/Thinkenterprise/websocket-framed-java">WebSocket-Framed</a>
                                         and the <a href="https://github.com/graphql/graphiql">GraphiQL</a> integration plugin
                                         <a href="https://github.com/Thinkenterprise/netty-plugin-graphiql">Netty-Plugin-GraphiQL</a><sup>*</sup>.
                                     </p>
                                     <p>
                                         For details on how these libraries are itegrated and play together, please see
                                         the <a href="#architecture">Architecture</a> page.
-                                    </p>
-                                    <p>
-                                        <div class="footnote"><sup>*</sup>&nbsp;originally developed for <b>GraphQL-IO</b> by same author to fill the gap</div>
                                     </p>
                                 </div>
                             </div>
@@ -97,25 +94,30 @@
                                 <div class="g-col-9-12">
                                     <div class="headline">Sample</div>
                                     <p>
-                                    A trivial Hello World sample for <b>GraphQL-IO Server Java </b> can look like the following.
+                                    A Hello World sample for <b>GraphQL-IO Server Java </b> can look like the following.
                                     For more elaborate examples, check out the <b>GraphQL-IO</b> <a href="https://github.com/Thinkenterprise/graphql-io-server-java/tree/master/src/samples">Server Samples</a>
                                     </p>
                                     <p>
                                         <b>Hello World Java Server:</b>
                                         <div data-syntax="java">
-@SpringBootApplication
-public class Application implements ApplicationRunner {
-	
-	
-	@Autowired
-	CounterResolver counterResolver;
 
+@SpringBootApplication
+public class SampleHelloWorldApplication implements ApplicationRunner {
+	
 	@Autowired
 	private GsServer gsServer;
 	
+	@Autowired
+	SampleHelloWorldResolver helloWorldResolver;
+	
+	public static void main(String[] args) {
+		SpringApplication.run(SampleHelloWorldApplication.class, args);
+	}
+
+	
 	public	void run(ApplicationArguments args) throws Exception {	
 		
-		gsServer.registerGraphQLResolver(counterResolver);
+		gsServer.registerGraphQLResolver(helloWorldResolver);
 		gsServer.start();		
 	}
 }
